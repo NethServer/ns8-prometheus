@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+
+#
+# Copyright (C) 2022 Nethesis S.r.l.
+# http://www.nethesis.it - nethserver@nethesis.it
+#
+# This script is part of NethServer.
+#
+# NethServer is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or any later version.
+#
+# NethServer is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with NethServer.  If not, see COPYING.
+#
+
+import os
+import agent
+import os.path
+import agent.tasks
+
+# Setup default scraping for local node
+rdb = agent.redis_connect()
+default_instance = rdb.get(f'node/{os.environ["NODE_ID"]}/default_instance/node_exporter')  or "node_exporter1"
+node_path = rdb.hget(f'module/{default_instance}/environment', 'NODE_EXPORTER_PATH') or "/metrics"
+
+# Read loki config from local node
+logcli = agent.read_envfile("/etc/nethserver/logcli.env")
+
+with open('prometheus.yml', 'w') as fp:
+    fp.write("global:\n")
+    fp.write("scrape_configs:\n")
+    fp.write('  - job_name: "node"\n')
+    fp.write(f'    metrics_path: "{node_path}"\n')
+    fp.write('    static_configs:\n')
+    fp.write('      - targets: ["10.0.2.2"]\n')
+    fp.write('  - job_name: "loki"\n')
+    fp.write('    basic_auth:\n')
+    fp.write(f'      username: "{logcli["LOKI_USERNAME"]}"\n')
+    fp.write(f'      password: "{logcli["LOKI_PASSWORD"]}"\n')
+    fp.write('    static_configs:\n')
+    fp.write(f'      - targets: ["{logcli["LOKI_ADDR"].removeprefix("http://")}"]\n')
+
+    # Search for extra jobs
+
+    for jkey in rdb.scan_iter('module/{os.environ["MODULE_ID"}/jobs/*'):
+        job = jkey.removeprefix('module/{os.environ["MODULE_ID"}/jobs/')
+        config = rdb.hgetall(jkey)
+        fp.write(f'  - job_name: "{job}"\n')
+        fp.write(f'    metrics_path: "{config["metrics_path"]}"\n')
+        fp.write('    static_configs:\n')
+        fp.write(f'      - targets: ["{config["targets"]}"]\n')

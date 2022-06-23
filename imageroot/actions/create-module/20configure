@@ -49,25 +49,3 @@ response = agent.tasks.run(
 
 # Check if traefik configuration has been successfull
 agent.assert_exp(response['exit_code'] == 0)
-
-# Setup default scraping for local node
-rdb = agent.redis_connect()
-default_instance = rdb.get(f'node/{os.environ["NODE_ID"]}/default_instance/node_exporter')  or "node_exporter1"
-node_path = rdb.hget(f'module/{default_instance}/environment', 'NODE_EXPORTER_PATH') or "/metrics"
-
-# Read loki config from local node
-logcli = agent.read_envfile("/etc/nethserver/logcli.env")
-
-with open('prometheus.yml', 'w') as fp:
-    fp.write("global:\n")
-    fp.write("scrape_configs:\n")
-    fp.write('  - job_name: "node"\n')
-    fp.write(f'    metrics_path: "{node_path}"\n')
-    fp.write('    static_configs:\n')
-    fp.write('      - targets: ["10.0.2.2"]\n')
-    fp.write('  - job_name: "loki"\n')
-    fp.write('    basic_auth:\n')
-    fp.write(f'      username: "{logcli["LOKI_USERNAME"]}"\n')
-    fp.write(f'      password: "{logcli["LOKI_PASSWORD"]}"\n')
-    fp.write('    static_configs:\n')
-    fp.write(f'      - targets: ["{logcli["LOKI_ADDR"].removeprefix("http://")}"]\n')
