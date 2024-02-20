@@ -27,7 +27,7 @@
     "action": {
         "get-name": "Name abrufen",
         "list-backups": "Datensicherungen auflisten",
-        "list-backup-repositories": "Speicherorte der Dateisicherungen auflisten",
+        "list-backup-repositories": "Datensicherungen-Ziele auflisten",
         "get-configuration": "Konfiguration abrufen",
         "configure-module": "Modul konfigurieren",
         "get-module-info": "Modulinformationen abrufen",
