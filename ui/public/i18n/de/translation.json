@@ -1,57 +1,57 @@
 {
     "status": {
-        "services": "Service | Services",
-        "app_volumes": "App volume | App volumes",
-        "app_images": "App image | App images",
+        "services": "Dienst | Dienste",
+        "app_volumes": "App Volumen | App Volumen",
+        "app_images": "App Abbild | App Abbilder",
         "name": "Name",
-        "size": "Size",
-        "mount": "Mount",
-        "no_services": "No services",
+        "size": "Größe",
+        "mount": "Einhängepunkt",
+        "no_services": "Keine Dienste",
         "app_url": "öffentliche URL",
         "title": "Status",
-        "app_instance": "App instance",
-        "installation_node": "Installation node",
-        "node": "Node",
-        "created": "Created",
-        "no_images": "No images",
-        "no_volumes": "No volumes"
+        "app_instance": "App-Instanz",
+        "installation_node": "Installations-Knoten",
+        "node": "Knoten",
+        "created": "Erstellt",
+        "no_images": "Keine Abbilder",
+        "no_volumes": "Keine Volumen"
     },
     "settings": {
-        "title": "Settings",
+        "title": "Einstellungen",
         "configure_instance": "{instance} konfigurieren",
-        "save": "Save"
+        "save": "Speichern"
     },
     "task": {
-        "cannot_create_task": "Cannot create task {action}"
+        "cannot_create_task": "Aufgabe {action} kann nicht erstellt werden"
     },
     "action": {
-        "get-name": "Get name",
-        "list-backups": "List backups",
-        "list-backup-repositories": "List backup repositories",
-        "get-configuration": "Get configuration",
-        "configure-module": "Configure module",
-        "get-module-info": "Get module info",
-        "list-installed-modules": "List installed modules",
-        "get-status": "Get status"
+        "get-name": "Namen abrufen",
+        "list-backups": "Datensicherungen auflisten",
+        "list-backup-repositories": "Datensicherungs-Ziele auflisten",
+        "get-configuration": "Konfiguration abrufen",
+        "configure-module": "Modul konfigurieren",
+        "get-module-info": "Modul-Info abrufen",
+        "list-installed-modules": "installierte Modules auflisten",
+        "get-status": "Status abrufen"
     },
     "error": {
-        "error": "Error",
-        "validation_error": "Validation error",
-        "network_timeout": "Network timeout",
-        "401": "Invalid authentication",
-        "404": "Resource not found",
-        "cannot_retrieve_module_info": "Cannot retrieve module info",
-        "cannot_retrieve_installed_modules": "Cannot retrieve installed modules",
-        "generic_error": "Something went wrong",
-        "network_error": "Network error",
-        "403": "Operation not authorized"
+        "error": "Fehler",
+        "validation_error": "Überprüfungsfehler",
+        "network_timeout": "Netzwerk-Zeitüberschreitung",
+        "401": "Ungültige Authentifizierung",
+        "404": "Ressource nicht gefunden",
+        "cannot_retrieve_module_info": "Modul-Info kann nicht abgerufen werden",
+        "cannot_retrieve_installed_modules": "Installierte Module können nicht abgerufen werden",
+        "generic_error": "Etwas ist schief gegangen",
+        "network_error": "Netzwerk-Fehler",
+        "403": "Operation nicht genehmigt"
     },
     "common": {
-        "required": "Required",
-        "work_in_progress": "Work in progress",
-        "processing": "Processing..."
+        "required": "Erforderlich",
+        "work_in_progress": "in Arbeit",
+        "processing": "Verarbeite..."
     },
     "about": {
-        "title": "About"
+        "title": "Über"
     }
 }
