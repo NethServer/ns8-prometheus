@@ -21,7 +21,7 @@
     "common": {
         "work_in_progress": "Work in progress",
         "processing": "Processing...",
-        "required": "Required"
+        "required": "Beharrezkoa"
     },
     "task": {
         "cannot_create_task": "Cannot create task {action}"
