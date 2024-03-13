@@ -1,0 +1,57 @@
+{
+    "status": {
+        "services": "Dienst | Dienste",
+        "app_volumes": "App Volumen | App Volumen",
+        "app_images": "App Abbild | App Abbilder",
+        "name": "Name",
+        "size": "Größe",
+        "mount": "Einhängepunkt",
+        "no_services": "Keine Dienste",
+        "app_url": "öffentliche URL",
+        "title": "Status",
+        "app_instance": "App-Instanz",
+        "installation_node": "Installations-Knoten",
+        "node": "Knoten",
+        "created": "Erstellt",
+        "no_images": "Keine Abbilder",
+        "no_volumes": "Keine Volumen"
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "configure_instance": "{instance} konfigurieren",
+        "save": "Speichern"
+    },
+    "task": {
+        "cannot_create_task": "Aufgabe {action} kann nicht erstellt werden"
+    },
+    "action": {
+        "get-name": "Namen abrufen",
+        "list-backups": "Datensicherungen auflisten",
+        "list-backup-repositories": "Datensicherungs-Ziele auflisten",
+        "get-configuration": "Konfiguration abrufen",
+        "configure-module": "Modul konfigurieren",
+        "get-module-info": "Modul-Info abrufen",
+        "list-installed-modules": "installierte Modules auflisten",
+        "get-status": "Status abrufen"
+    },
+    "error": {
+        "error": "Fehler",
+        "validation_error": "Überprüfungsfehler",
+        "network_timeout": "Netzwerk-Zeitüberschreitung",
+        "401": "Ungültige Authentifizierung",
+        "404": "Ressource nicht gefunden",
+        "cannot_retrieve_module_info": "Modul-Info kann nicht abgerufen werden",
+        "cannot_retrieve_installed_modules": "Installierte Module können nicht abgerufen werden",
+        "generic_error": "Etwas ist schief gegangen",
+        "network_error": "Netzwerk-Fehler",
+        "403": "Operation nicht genehmigt"
+    },
+    "common": {
+        "required": "Erforderlich",
+        "work_in_progress": "in Arbeit",
+        "processing": "Verarbeite..."
+    },
+    "about": {
+        "title": "Über"
+    }
+}
