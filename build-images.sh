@@ -16,7 +16,7 @@ container=$(buildah from scratch)
 # Reuse existing nodebuilder-prometheus container, to speed up builds
 if ! buildah containers --format "{{.ContainerName}}" | grep -q nodebuilder-prometheus; then
     echo "Pulling NodeJS runtime..."
-    buildah from --name nodebuilder-prometheus -v "${PWD}:/usr/src:Z" docker.io/library/node:18.13.0-alpine
+    buildah from --name nodebuilder-prometheus -v "${PWD}:/usr/src:Z" docker.io/library/node:18.20.5-alpine
 fi
 
 echo "Build static UI files with node..."
