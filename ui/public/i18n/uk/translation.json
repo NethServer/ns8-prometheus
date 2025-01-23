@@ -5,7 +5,7 @@
         "processing": "Processing..."
     },
     "settings": {
-        "configure_instance": "Налаштувати {примірник}",
+        "configure_instance": "Configure {instance}",
         "save": "Save",
         "title": "Settings"
     },
