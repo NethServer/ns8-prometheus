@@ -22,4 +22,4 @@
 
 # If the control reaches this step, the service can be enabled and started
 
-systemctl --user enable --now prometheus.service
+systemctl --user enable --now prometheus.service alertmanager.service

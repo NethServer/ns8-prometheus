@@ -19,11 +19,12 @@ ExecStart=/usr/bin/podman run \
     --cidfile=%t/prometheus.ctr-id \
     --cgroups=no-conmon \
     --replace --name=%N \
-    --publish=127.0.0.1:${TCP_PORT}:9090 \
+    --network=host \
     --volume=%S/state/prometheus.yml:/prometheus/prometheus.yml:z \
     --volume=./prometheus.d/:/prometheus/prometheus.d/:z \
+    --volume=./rules.d/:/prometheus/rules.d/:z \
     --volume=prometheus-data:/prometheus:z \
-    ${PROMETHEUS_IMAGE} --web.external-url=/${PROMETHEUS_PATH}/
+    ${PROMETHEUS_IMAGE} --web.external-url=/${PROMETHEUS_PATH}/ --web.listen-address=:9091
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/prometheus.ctr-id -t 10
 ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/prometheus.ctr-id
 PIDFile=%t/prometheus.pid
