@@ -5,6 +5,8 @@ Resource    api.resource
 *** Variables ***
 ${IMAGE_URL}             ghcr.io/nethserver/prometheus:latest
 ${SCENARIO}              install
+${module_id}    ${EMPTY}
+${backend_url}  ${EMPTY}
 
 *** Keywords ***
 Retry test
