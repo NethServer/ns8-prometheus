@@ -12,9 +12,9 @@
     }
   ],
   "docs": {
-    "documentation_url": "https://docs.nethserver.org/projects/ns8/en/latest/prometheus.html",
+    "documentation_url": "https://docs.nethserver.org/docs/administrator-manual/nethforge/prometheus",
     "bug_url": "https://github.com/NethServer/dev",
-    "code_url": "https://github.com/author/ns8-prometheus"
+    "code_url": "https://github.com/NethServer/ns8-prometheus"
   },
   "source": "ghcr.io/nethserver/prometheus"
 }
