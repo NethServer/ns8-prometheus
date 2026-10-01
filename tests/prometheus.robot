@@ -19,16 +19,22 @@ Backend URL is reachable
     Should Be Equal As Integers    ${rc}  0
 
 
-*** Test Cases ***
-Add module for ${SCENARIO} scenario
-    IF    r'${SCENARIO}' == 'update'
-        Set Local Variable  ${iurl}  prometheus
-    ELSE
-        Set Local Variable  ${iurl}  ${IMAGE_URL}
-    END
-    ${output}  ${rc} =    Execute Command    add-module ${iurl} 1
+Add module
+    [Arguments]    ${image}
+    ${output}  ${rc} =    Execute Command    add-module ${image} 1
     ...    return_rc=True
     Should Be Equal As Integers    ${rc}  0
+    RETURN    ${output}
+
+*** Test Cases ***
+Add module for ${SCENARIO} scenario
+    # prometheus is published in NethForge, which a new node has disabled
+    IF    r'${SCENARIO}' == 'update'
+        Run task    cluster/alter-repository    {"name":"nethforge","status":true}
+        ${output} =    Wait Until Keyword Succeeds    5 times    10 seconds    Add module    prometheus
+    ELSE
+        ${output} =    Add module    ${IMAGE_URL}
+    END
     &{output} =    Evaluate    ${output}
     Set Suite Variable    ${module_id}    ${output.module_id}
 
