@@ -22,6 +22,9 @@ The instance starts automatically, the create-module will:
 
 HTTP to HTTPS redirect and Let's Encrypt certificate are disabled.
 
+The module has no settings, so it has no UI: the cluster-admin page of
+the instance shows a placeholder.
+
 Send a test HTTP request to the prometheus backend service:
 
     source /home/prometheus1/.config/state/environment
@@ -49,12 +52,3 @@ Test the module using the `test-module.sh` script:
     ./test-module.sh <NODE_ADDR> ghcr.io/nethserver/prometheus:latest
 
 The tests are made using [Robot Framework](https://robotframework.org/)
-
-## UI translation
-
-Translated with [Weblate](https://hosted.weblate.org/projects/ns8/).
-
-To setup the translation process:
-
-- add [GitHub Weblate app](https://docs.weblate.org/en/latest/admin/continuous.html#github-setup) to your repository
-- add your repository to [hosted.weblate.org]((https://hosted.weblate.org) or ask a NethServer developer to add it to ns8 Weblate project

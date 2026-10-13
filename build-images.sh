@@ -13,18 +13,12 @@ reponame="prometheus"
 # Create a new empty container image
 container=$(buildah from scratch)
 
-# Reuse existing nodebuilder-prometheus container, to speed up builds
-if ! buildah containers --format "{{.ContainerName}}" | grep -q nodebuilder-prometheus; then
-    echo "Pulling NodeJS runtime..."
-    buildah from --name nodebuilder-prometheus -v "${PWD}:/usr/src:Z" docker.io/library/node:24.21.0-alpine
-fi
-
-echo "Build static UI files with node..."
-buildah run --env="NODE_OPTIONS=--openssl-legacy-provider" nodebuilder-prometheus sh -c "cd /usr/src/ui && corepack enable && yarn install && yarn build"
-
 # Add imageroot directory to the container image
 buildah add "${container}" imageroot /imageroot
-buildah add "${container}" ui/dist /ui
+# The module has no UI: ship only a placeholder page, the metadata and
+# the logo, which the cluster reads from the img/ directory
+buildah add "${container}" ui/public /ui
+buildah add "${container}" ui/src/assets/module_default_logo.png /ui/img/module_default_logo.png
 # Setup the entrypoint, ask to reserve one TCP port with the label and set a rootless container
 buildah config --entrypoint=/ \
     --label="org.nethserver.authorizations=traefik@any:routeadm" \
