@@ -5,6 +5,8 @@ Resource    api.resource
 *** Variables ***
 ${IMAGE_URL}             ghcr.io/nethserver/prometheus:latest
 ${SCENARIO}              install
+${CLUSTER_USER}          admin
+${CLUSTER_PASSWORD}      Nethesis,1234
 ${module_id}    ${EMPTY}
 ${backend_url}  ${EMPTY}
 
@@ -18,6 +20,21 @@ Backend URL is reachable
     ...    return_rc=True  return_stdout=False
     Should Be Equal As Integers    ${rc}  0
 
+Login to cluster-admin
+    New Page    https://${NODE_ADDR}/cluster-admin/
+    Fill Text    text="Username"    ${CLUSTER_USER}
+    Click    button >> text="Continue"
+    Fill Text    text="Password"    ${CLUSTER_PASSWORD}
+    Click    button >> text="Log in"
+    Wait For Elements State    css=#main-content    visible    timeout=10s
+
+Screenshot page
+    [Arguments]    ${route}    ${title}    ${index}
+    Go To    https://${NODE_ADDR}/cluster-admin/#/apps/${module_id}${route}
+    Wait For Elements State    iframe >>> h2 >> text="${title}"    visible    timeout=10s
+    # The page fills itself from several tasks: let them land
+    Sleep    5s
+    Take Screenshot    filename=${OUTPUT DIR}/browser/screenshot/${index}._${title}.png
 
 Add module
     [Arguments]    ${image}
@@ -57,6 +74,18 @@ Check if prometheus works as expected
 Verify prometheus frontend title
     ${output} =    Execute Command    curl -L -s ${backend_url}
     Should Contain    ${output}    <title>Prometheus
+
+Take screenshots of the module pages
+    [Documentation]    Capture what cluster-admin shows for Prometheus.
+    ...                Tagged ui: skipped unless RUN_UI_TESTS is true, since it needs a browser.
+    [Tags]    ui
+    Import Library    Browser
+    New Browser    chromium    headless=True
+    New Context    ignoreHTTPSErrors=True    viewport={'width': 1280, 'height': 900}
+    Login to cluster-admin
+    Screenshot page    ${EMPTY}          Status    1
+    Screenshot page    ?page=about       About     2
+    Close Browser
 
 Check if prometheus is removed correctly
     ${rc} =    Execute Command    remove-module --no-preserve ${module_id}
