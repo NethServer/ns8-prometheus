@@ -1,0 +1,57 @@
+{
+    "error": {
+        "403": "Chybí pověření pro operaci",
+        "cannot_retrieve_installed_modules": "Nebylo možné získat nainstalované moduly",
+        "401": "Neplatné ověření se",
+        "cannot_retrieve_module_info": "Nebylo možné získat informace o modulu",
+        "generic_error": "Něco se pokazilo",
+        "error": "Chyba",
+        "network_timeout": "Překročen časový limit sítě",
+        "404": "Prostředek nenalezen",
+        "network_error": "Chyba sítě",
+        "validation_error": "Chyba ověřování správnosti"
+    },
+    "common": {
+        "required": "Vyžadováno",
+        "work_in_progress": "Pracuje se na tom",
+        "processing": "Zpracovávání…"
+    },
+    "settings": {
+        "configure_instance": "Nastavit {instance}",
+        "save": "Uložit",
+        "title": "Nastavení"
+    },
+    "status": {
+        "created": "Vytvořeno",
+        "size": "Velikost",
+        "name": "Název",
+        "no_images": "Žádné obrazy",
+        "app_volumes": "Svazek aplikace | Svazky aplikací | Svazků aplikací",
+        "services": "Služba | Služby | Služeb",
+        "app_images": "Obraz aplikace | Obrazy aplikací | Obrazů aplikací",
+        "no_services": "Žádné služby",
+        "app_instance": "Instance aplikace",
+        "mount": "Připojit",
+        "title": "Stav",
+        "installation_node": "Uzel instalace",
+        "node": "Uzel",
+        "app_url": "Veřejná URL",
+        "no_volumes": "Žádné svazky"
+    },
+    "about": {
+        "title": "O aplikaci"
+    },
+    "action": {
+        "list-backup-repositories": "Vypsat repozitáře záloh",
+        "get-module-info": "Získat informace o modulu",
+        "list-installed-modules": "Vypsat nainstalované moduly",
+        "list-backups": "Vypsat zálohy",
+        "get-status": "Získat stav",
+        "configure-module": "Nastavit modul",
+        "get-configuration": "Získat nastavení",
+        "get-name": "Získat název"
+    },
+    "task": {
+        "cannot_create_task": "Nebylo možné vytvořit úlohu {action}"
+    }
+}
